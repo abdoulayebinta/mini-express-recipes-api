@@ -1,8 +1,8 @@
 const service = require('../services/recipesServices');
 
-const getAll = (req, res, next) => {
+const getAll = async (req, res, next) => {
   try {
-    res.json({ data: service.getAll });
+    res.json({ data: await service.getAll() });
   } catch (error) {
     next(error);
   }
