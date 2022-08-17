@@ -2,8 +2,9 @@ const express = require('express');
 const cors = require('cors');
 
 const recipeRouter = require('./routers/recipesRouters');
+const usersRouter = require('./routers/usersRouter');
 const { handleError } = require('./utils/error');
-const auth = require('./middleware/auth');
+const auth = require('./middleware/auth.js');
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/recipes', recipeRouter);
+app.use('/api/v1/users', usersRouter);
 
 app.use(handleError);
 

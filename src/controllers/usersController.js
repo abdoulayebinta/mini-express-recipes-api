@@ -1,4 +1,4 @@
-const { create, authenticate, find } = require('../services/users');
+const { create, authenticate, find } = require('../services/usersService');
 
 const handleSignup = async (req, res, next) => {
   try {
