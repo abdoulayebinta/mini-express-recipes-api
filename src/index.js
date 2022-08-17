@@ -3,6 +3,7 @@ const cors = require('cors');
 
 const recipeRouter = require('./routers/recipesRouters');
 const { handleError } = require('./utils/error');
+const auth = require('./middleware/auth');
 
 const app = express();
 
@@ -22,6 +23,8 @@ app.use((req, res, next) => {
 app.use(express.json());
 // Middleware to parse incoming requests with URL-encoded payload
 app.use(express.urlencoded({ extended: true }));
+
+app.use(auth.initialize());
 
 // Redirect the base URL / to /api/v1/recipes
 app.get('/', (req, res) => {
