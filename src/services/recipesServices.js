@@ -38,7 +38,22 @@ const update = async (id, updated) => {
   return updated;
 };
 
+// Remove a recipe
+const remove = async (id) => {
+  const recipes = await getAll();
+  const newRecipes = recipes
+    .map((recipe) => {
+      return recipe.id === parseInt(id) ? null : recipe;
+    })
+    .filter((recipe) => recipe !== null);
+
+  await fs.writeFile(recipesFilePath, JSON.stringify(newRecipes));
+};
+
 module.exports = {
   getAll,
   save,
+  get,
+  update,
+  remove,
 };
