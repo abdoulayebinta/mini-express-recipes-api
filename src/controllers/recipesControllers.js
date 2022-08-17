@@ -1,7 +1,7 @@
 const service = require('../services/recipesServices');
 
 // Get all recipes controller
-const getAll = async (req, res, next) => {
+const getAllRecipes = async (req, res, next) => {
   try {
     res.json({ data: await service.getAll() });
   } catch (error) {
@@ -10,7 +10,7 @@ const getAll = async (req, res, next) => {
 };
 
 // Save recipe controller
-const save = async (req, res, next) => {
+const saveRecipe = async (req, res, next) => {
   try {
     const {
       name,
@@ -35,7 +35,7 @@ const save = async (req, res, next) => {
 };
 
 // Get a single recipe with a given id
-const get = async (req, res, next) => {
+const getRecipe = async (req, res, next) => {
   try {
     const recipe = await service.get(req.params.id);
 
@@ -52,7 +52,7 @@ const get = async (req, res, next) => {
 };
 
 // Update a recipe
-const update = async (req, res, next) => {
+const updateRecipe = async (req, res, next) => {
   try {
     const recipe = await service.get(req.params.id);
 
@@ -85,7 +85,7 @@ const update = async (req, res, next) => {
 };
 
 // Remove a recipe
-const remove = async (req, res, next) => {
+const deleteRecipe = async (req, res, next) => {
   try {
     const recipe = await service.get(req.params.id);
 
@@ -103,9 +103,9 @@ const remove = async (req, res, next) => {
 };
 
 module.exports = {
-  getAll,
-  save,
-  get,
-  update,
-  remove,
+  getAllRecipes,
+  saveRecipe,
+  getRecipe,
+  updateRecipe,
+  deleteRecipe,
 };
