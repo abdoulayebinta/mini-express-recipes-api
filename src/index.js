@@ -5,7 +5,7 @@ const recipeRouter = require('./routers/recipesRouters');
 
 const app = express();
 
-// Middleware
+// Middleware for logging
 app.use((req, res, next) => {
   const { method, path } = req;
   console.log(
@@ -13,6 +13,11 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+// Middleware to parse JSON data and make it accessible in the request object (via req.body)
+app.use(express.json());
+// Middleware to parse incoming requests with URL-encoded payload
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/v1/recipes', recipeRouter);
 
