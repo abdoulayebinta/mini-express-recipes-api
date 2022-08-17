@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 const recipeRouter = require('./routers/recipesRouters');
+const { handleError } = require('./utils/error');
 
 const app = express();
 
@@ -28,6 +29,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/recipes', recipeRouter);
+
+app.use(handleError);
 
 const port = process.env.PORT || 8080;
 
