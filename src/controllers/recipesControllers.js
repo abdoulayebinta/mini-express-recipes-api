@@ -96,7 +96,7 @@ const remove = async (req, res, next) => {
     }
 
     await service.remove(req.params.id);
-    //  Send a proper status
+    res.statusCode(204);
   } catch (error) {
     next(error);
   }
