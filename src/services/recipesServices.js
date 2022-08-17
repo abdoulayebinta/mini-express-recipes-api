@@ -23,6 +23,21 @@ const get = async (id) => {
   return recipes.find((recipe) => recipe.id === parseInt(id));
 };
 
+// Update a recipe
+const update = async (id, updated) => {
+  const recipes = await getAll();
+
+  updated.id = parseInt(id);
+
+  const updatedRecipe = recipes.map((recipe) => {
+    return recipe.id === parseInt(id) ? updated : recipe;
+  });
+
+  await fs.readFile(recipesFilePath, JSON.stringify(updatedRecipe));
+
+  return updated;
+};
+
 module.exports = {
   getAll,
   save,
