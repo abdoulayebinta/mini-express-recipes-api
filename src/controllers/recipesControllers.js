@@ -34,6 +34,23 @@ const save = async (req, res, next) => {
   }
 };
 
+// Get a single recipe with a given id
+const get = async (req, res, next) => {
+  try {
+    const recipe = await service.get(req.params.id);
+
+    if (recipe === undefined) {
+      const err = new Error('Recipe not found');
+      err.statusCode = 404;
+      throw err;
+    }
+
+    res.json({ data: recipe });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAll,
   save,
