@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 
 const recipeRouter = require('./routers/recipesRouters');
 
@@ -18,6 +17,11 @@ app.use((req, res, next) => {
 app.use(express.json());
 // Middleware to parse incoming requests with URL-encoded payload
 app.use(express.urlencoded({ extended: true }));
+
+// Redirect the base URL / to /api/v1/recipes
+app.get('/', (req, res) => {
+  res.redirect('/api/v1/recipes');
+});
 
 app.use('/api/v1/recipes', recipeRouter);
 
