@@ -1,5 +1,18 @@
 const service = require('../services/recipesServices');
 
+const recipeExist = async (req, res, next) => {
+  const recipe = await service.get(req.params.id);
+
+  if (recipe === undefined) {
+    const err = new Error('Recipe not found');
+    err.statusCode = 404;
+    throw err;
+  } else {
+    res.locals.recipe = recipe;
+    next();
+  }
+};
+
 // Get all recipes controller
 const getAllRecipes = async (req, res, next) => {
   try {
@@ -37,15 +50,7 @@ const saveRecipe = async (req, res, next) => {
 // Get a single recipe with a given id
 const getRecipe = async (req, res, next) => {
   try {
-    const recipe = await service.get(req.params.id);
-
-    if (recipe === undefined) {
-      const err = new Error('Recipe not found');
-      err.statusCode = 404;
-      throw err;
-    }
-
-    res.json({ data: recipe });
+    res.json({ data: res.locals.recipe });
   } catch (error) {
     next(error);
   }
@@ -54,14 +59,6 @@ const getRecipe = async (req, res, next) => {
 // Update a recipe
 const updateRecipe = async (req, res, next) => {
   try {
-    const recipe = await service.get(req.params.id);
-
-    if (recipe === undefined) {
-      const err = new Error('Recipe not found');
-      err.statusCode = 404;
-      throw err;
-    }
-
     const {
       name,
       healthLabels,
@@ -87,14 +84,6 @@ const updateRecipe = async (req, res, next) => {
 // Remove a recipe
 const deleteRecipe = async (req, res, next) => {
   try {
-    const recipe = await service.get(req.params.id);
-
-    if (recipe === undefined) {
-      const err = new Error('Recipe not found');
-      err.statusCode = 404;
-      throw err;
-    }
-
     await service.remove(req.params.id);
     res.statusCode(204);
   } catch (error) {
@@ -105,7 +94,7 @@ const deleteRecipe = async (req, res, next) => {
 module.exports = {
   getAllRecipes,
   saveRecipe,
-  getRecipe,
-  updateRecipe,
-  deleteRecipe,
+  getRecipe: [recipeExist, getRecipe],
+  updateRecipe: [recipeExist, updateRecipe],
+  deleteRecipe: [recipeExist, deleteRecipe],
 };
