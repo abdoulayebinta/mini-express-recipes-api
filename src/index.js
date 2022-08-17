@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 
-const recipeRouter = require('./routers/recipes');
+const recipeRouter = require('./routers/recipesRouters');
 
 const app = express();
 
