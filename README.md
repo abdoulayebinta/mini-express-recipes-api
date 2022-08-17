@@ -9,6 +9,6 @@
 - cors
 - bcrypt: hash user's password before storing it in the database
 - jsonwebtoken
-- passport
+- passport: authenticate a request
 - passport-jwt
 - dotenv
