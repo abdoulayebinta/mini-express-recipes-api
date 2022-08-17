@@ -1,8 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 
 const recipeRouter = require('./routers/recipesRouters');
 
 const app = express();
+
+// Middleware to configure CORS
+app.use(cors());
 
 // Middleware for logging
 app.use((req, res, next) => {
