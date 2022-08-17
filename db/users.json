@@ -1,8 +1,1 @@
-[
-  {
-    "id": 1,
-    "name": "bah",
-    "email": "bah@mail.com",
-    "password": "$2b$10$u2r3EK7.p4l9bzQd74nGNepvIHw5gF84j4Dy6/kJmtNR4OC.A5t5O"
-  }
-]
+[{"id":1,"name":"bah","email":"bah@mail.com","password":"$2b$10$u2r3EK7.p4l9bzQd74nGNepvIHw5gF84j4Dy6/kJmtNR4OC.A5t5O"},{"id":2,"email":"man@mail.com","name":"man","password":"$2b$10$mzA49FSbK7QJUvv/y.mR1OzL79TAN7XW6Xx0Xsq9.zjAOkZr.8eYS"}]
