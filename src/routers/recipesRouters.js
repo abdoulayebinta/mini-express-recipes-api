@@ -2,10 +2,19 @@ const express = require('express');
 
 const router = express.Router();
 
-// add route handlers here
-const { getAll, save } = require('../controllers/recipesControllers');
+const {
+  getAll,
+  save,
+  get,
+  update,
+  remove,
+} = require('../controllers/recipesControllers');
 
+// route handlers
 router.get('/', getAll);
 router.post('/', save);
+router.get('/:id', get);
+router.put('/:id', update);
+router.delete('/:id', remove);
 
 module.exports = router;
