@@ -84,7 +84,28 @@ const update = async (req, res, next) => {
   }
 };
 
+// Remove a recipe
+const remove = async (req, res, next) => {
+  try {
+    const recipe = await service.get(req.params.id);
+
+    if (recipe === undefined) {
+      const err = new Error('Recipe not found');
+      err.statusCode = 404;
+      throw err;
+    }
+
+    await service.remove(req.params.id);
+    //  Send a proper status
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAll,
   save,
+  get,
+  update,
+  remove,
 };
