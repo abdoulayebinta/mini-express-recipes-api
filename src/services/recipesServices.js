@@ -17,6 +17,12 @@ const save = async (recipe) => {
   return recipe;
 };
 
+// Get a single recipe
+const get = async (id) => {
+  const recipes = await getAll();
+  return recipes.find((recipe) => recipe.id === parseInt(id));
+};
+
 module.exports = {
   getAll,
   save,
